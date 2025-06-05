@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import About from './components/About';
+import TechStack from './components/TechStack';
+import Presence from './components/Presence';
+import Blog from './components/Blog';
+import Footer from './components/Footer';
+import ScrollToSection from './components/ScrollToSection';
+import DangersOnlineConverters from './pages/blog/dangers-online-converters';
+import NeuralNetworksRevolution from './pages/blog/neural-networks-revolution';
+import ShazamTechnology from './pages/blog/shazam-technology';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-dark text-white">
+        <ScrollToSection />
+        <Header />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Hero />
+              <About />
+              <TechStack />
+              <Presence />
+              <Blog />
+            </>
+          } />
+          <Route path="/blog/dangers-online-converters" element={<DangersOnlineConverters />} />
+          <Route path="/blog/neural-networks-revolution" element={<NeuralNetworksRevolution />} />
+          <Route path="/blog/shazam-technology" element={<ShazamTechnology />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
